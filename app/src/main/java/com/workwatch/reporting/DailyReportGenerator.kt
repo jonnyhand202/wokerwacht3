@@ -164,11 +164,11 @@ Mahkemede geçerli olan SEALED_ORIGINAL.enc dosyasıdır.
                 gps = GPSData(
                     latitude = it.latitude,
                     longitude = it.longitude,
-                    altitude = 0.0, // TODO: Add to entity
-                    accuracy = 0f,
-                    speed = 0f,
-                    bearing = 0f,
-                    provider = "fused"
+                    altitude = it.altitude,
+                    accuracy = it.accuracy,
+                    speed = it.speed,
+                    bearing = it.bearing,
+                    provider = it.provider
                 ),
                 device = getDeviceData(),
                 hash = Base64.encodeToString(it.currentHash, Base64.NO_WRAP).take(16)
@@ -181,11 +181,11 @@ Mahkemede geçerli olan SEALED_ORIGINAL.enc dosyasıdır.
                 gps = GPSData(
                     latitude = it.latitude,
                     longitude = it.longitude,
-                    altitude = 0.0,
-                    accuracy = 0f,
-                    speed = 0f,
-                    bearing = 0f,
-                    provider = "fused"
+                    altitude = it.altitude,
+                    accuracy = it.accuracy,
+                    speed = it.speed,
+                    bearing = it.bearing,
+                    provider = it.provider
                 ),
                 device = getDeviceData(),
                 hash = Base64.encodeToString(it.currentHash, Base64.NO_WRAP).take(16)

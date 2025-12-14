@@ -14,6 +14,11 @@ data class WorkerLogEntry(
     val checkInTime: Long,
     val longitude: Double,
     val latitude: Double,
+    val altitude: Double = 0.0,
+    val accuracy: Float = 0f,
+    val speed: Float = 0f,
+    val bearing: Float = 0f,
+    val provider: String = "fused",
     val checkOutTime: Long? = null,
     val workerSaltBase64: String,
     val keyVersion: Int = 1

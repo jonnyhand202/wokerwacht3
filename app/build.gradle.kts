@@ -72,4 +72,10 @@ dependencies {
 
     // OkHttp (Telegram bot)
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    // Google Play Services Location (for Geofencing and FusedLocationProvider)
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+
+    // Encrypted SharedPreferences for secure data storage
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
 }

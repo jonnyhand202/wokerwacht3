@@ -14,8 +14,18 @@ class WorkerRepository(
         return workerLogDao.getLatestLogEntry()
     }
 
+    // Alias for convenience
+    suspend fun getLatestLog(): WorkerLogEntry? {
+        return getLatestLogEntry()
+    }
+
     suspend fun insertLogEntry(logEntry: WorkerLogEntry) {
         workerLogDao.insert(logEntry)
+    }
+
+    // Alias for convenience
+    suspend fun insertLog(logEntry: WorkerLogEntry) {
+        insertLogEntry(logEntry)
     }
 
     suspend fun updateLogEntry(logEntry: WorkerLogEntry) {
