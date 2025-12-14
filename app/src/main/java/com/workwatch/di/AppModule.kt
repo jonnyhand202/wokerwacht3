@@ -6,7 +6,6 @@ import com.workwatch.data.*
 import com.workwatch.manager.AdminReportProcessor
 import com.workwatch.manager.WorkerCheckManager
 import com.workwatch.p2p.AdminP2PServer
-import com.workwatch.p2p.HashLeakDao
 import com.workwatch.reporting.ReportSender
 import com.workwatch.reporting.WorkerLeakSender
 import com.workwatch.reporting.WorkerReportAnalyzer
