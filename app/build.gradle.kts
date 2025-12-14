@@ -70,9 +70,6 @@ dependencies {
     implementation("androidx.hilt:hilt-work:1.1.0")
     kapt("androidx.hilt:hilt-compiler:1.1.0")
 
-    // OkHttp for Telegram Bot
+    // OkHttp (Telegram bot)
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
-
-    // Location Services
-    implementation("com.google.android.gms:play-services-location:21.0.1")
 }
