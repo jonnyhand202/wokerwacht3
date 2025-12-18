@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("com.google.gms.google-services")
 }
@@ -63,16 +63,16 @@ dependencies {
     // NanoHTTPD for P2P server
     implementation("org.nanohttpd:nanohttpd:2.3.1")
 
-    // Room Database for persistence
-    implementation("androidx.room:room-runtime:2.7.0")
-    implementation("androidx.room:room-ktx:2.7.0")
-    kapt("androidx.room:room-compiler:2.7.0")
+    // Room Database for persistence (KSP'ye güncellendi)
+    implementation("androidx.room:room-runtime:2.6.1") // NOT: 2.6.1 genellikle daha stabil
+    implementation("androidx.room:room-ktx:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1") // <-- DEĞİŞİKLİK 1
 
-    // Hilt for Dependency Injection
+    // Hilt for Dependency Injection (KSP'ye güncellendi ve düzeltildi)
     implementation("com.google.dagger:hilt-android:2.48")
-    kapt("com.google.dagger:hilt-compiler:2.48")
+    ksp("com.google.dagger:hilt-compiler:2.48") // <-- DEĞİŞİKLİK 2
     implementation("androidx.hilt:hilt-work:1.2.0")
-    kapt("androidx.hilt:hilt-compiler:1.2.0")
+    ksp("androidx.hilt:hilt-compiler:1.2.0") // <-- DEĞİŞİKLİK 3
 
     // OkHttp (Telegram bot)
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
@@ -86,13 +86,4 @@ dependencies {
     implementation("com.google.firebase:firebase-messaging-ktx")
     implementation("com.google.firebase:firebase-storage-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
-
-    // Firebase coroutines extension (already added above but ensuring it's there)
-    // implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.1")
-}
-
-// Fix for KAPT annotation processing errors
-kapt {
-    includeCompileClasspath = false
-    useBuildCache = false
 }
