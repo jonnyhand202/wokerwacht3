@@ -35,7 +35,7 @@ class WorkWatchApplication : Application(), Configuration.Provider {
             workerParameters: WorkerParameters
         ): androidx.work.Worker? {
             return when (workerClassName) {
-                CloudSyncWorker::class.java.name -> {
+                "com.workwatch.firebase.CloudSyncWorker" -> {
                     CloudSyncWorker(appContext, workerParameters, workerRepository, firestoreService) as androidx.work.Worker
                 }
                 else -> null
