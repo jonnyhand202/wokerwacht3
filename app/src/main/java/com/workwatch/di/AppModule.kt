@@ -177,13 +177,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideFirestore(): FirebaseFirestore =
-        Firebase.firestore.also { firestore ->
-            // Configure Firestore settings if needed
-            firestore.firestoreSettings = com.google.firebase.firestore.FirebaseFirestoreSettings.Builder()
-                .setNumericalComparisonsEnabled(false)
-                .build()
-        }
+    fun provideFirestore(): FirebaseFirestore = Firebase.firestore
 
     @Provides
     @Singleton

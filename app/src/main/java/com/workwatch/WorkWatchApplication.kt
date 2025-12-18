@@ -36,12 +36,17 @@ class WorkWatchApplication : Application(), Configuration.Provider {
         ): androidx.work.Worker? {
             return when (workerClassName) {
                 CloudSyncWorker::class.java.name -> {
-                    CloudSyncWorker(appContext, workerParameters, workerRepository, firestoreService)
+                    CloudSyncWorker(appContext, workerParameters, workerRepository, firestoreService) as androidx.work.Worker
                 }
                 else -> null
             }
         }
     }
+
+    override val workManagerConfiguration: Configuration
+        get() = Configuration.Builder()
+            .setWorkerFactory(customWorkerFactory)
+            .build()
 
     override fun onCreate() {
         super.onCreate()
@@ -63,11 +68,5 @@ class WorkWatchApplication : Application(), Configuration.Provider {
         }
 
         Log.d(TAG, "Application initialization complete")
-    }
-
-    override fun getWorkManagerConfiguration(): Configuration {
-        return Configuration.Builder()
-            .setWorkerFactory(customWorkerFactory)
-            .build()
     }
 }
