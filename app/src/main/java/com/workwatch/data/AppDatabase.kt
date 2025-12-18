@@ -10,11 +10,7 @@ import com.workwatch.entities.HashLeak
 import com.workwatch.entities.UserConfig
 import com.workwatch.entities.WorkerLogEntry
 
-@Database(
-    entities = [WorkerLogEntry::class, UserConfig::class, HashLeak::class, GPSTrailPoint::class],
-    version = 2,
-    exportSchema = false
-)
+@Database(entities = [WorkerLogEntry::class, UserConfig::class, HashLeak::class, GPSTrailPoint::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun workerLogDao(): WorkerLogDao

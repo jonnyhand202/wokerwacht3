@@ -1,9 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("com.google.gms.google-services")
+    kotlin("kapt")
 }
 
 android {
@@ -36,10 +36,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
-    ksp {
-        arg("room.schemaLocation", "$projectDir/schemas")
-    }
 }
 
 dependencies {
@@ -67,16 +63,16 @@ dependencies {
     // NanoHTTPD for P2P server
     implementation("org.nanohttpd:nanohttpd:2.3.1")
 
-    // Room Database for persistence (KSP'ye güncellendi)
-    implementation("androidx.room:room-runtime:2.6.1") // NOT: 2.6.1 genellikle daha stabil
+    // Room Database for persistence (KAPT'ye geçildi)
+    implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
-    ksp("androidx.room:room-compiler:2.6.1") // <-- DEĞİŞİKLİK 1
+    kapt("androidx.room:room-compiler:2.6.1")
 
-    // Hilt for Dependency Injection (KSP'ye güncellendi ve düzeltildi)
+    // Hilt for Dependency Injection (KAPT'ye geçildi)
     implementation("com.google.dagger:hilt-android:2.48")
-    ksp("com.google.dagger:hilt-compiler:2.48") // <-- DEĞİŞİKLİK 2
+    kapt("com.google.dagger:hilt-compiler:2.48")
     implementation("androidx.hilt:hilt-work:1.1.0")
-    ksp("androidx.hilt:hilt-compiler:1.1.0") // <-- DEĞİŞİKLİK 3
+    kapt("androidx.hilt:hilt-compiler:1.1.0")
 
     // OkHttp (Telegram bot)
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
