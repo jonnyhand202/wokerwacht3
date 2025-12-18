@@ -8,6 +8,10 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import com.workwatch.data.WorkerRepository
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.work.HiltWorker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
@@ -16,9 +20,10 @@ import java.util.concurrent.TimeUnit
  * Background worker for syncing unsynced logs to Firestore
  * Runs periodically to ensure data is backed up to cloud
  */
-class CloudSyncWorker(
-    context: Context,
-    params: WorkerParameters,
+@HiltWorker
+class CloudSyncWorker @AssistedInject constructor(
+    @Assisted context: Context,
+    @Assisted params: WorkerParameters,
     private val repository: WorkerRepository,
     private val firestoreService: FirestoreServiceImpl
 ) : CoroutineWorker(context, params) {
@@ -91,11 +96,21 @@ class CloudSyncWorker(
 }
 
 /**
- * Extension function on WorkerRepository to handle sync
+ * Extension function on WorkerRepository to mark logs as synced in the database
  */
 suspend fun WorkerRepository.updateLogSyncStatus(logIds: List<Long>) {
-    // This is handled via the DAO
-    if (logIds.isNotEmpty()) {
-        Log.d("CloudSyncService", "Updating sync status for logs: $logIds")
+    try {
+        if (logIds.isNotEmpty()) {
+            // Get the DAO and update the sync status for each log
+            val allLogs = getAllLogs()
+            for (log in allLogs) {
+                if (log.id in logIds) {
+                    updateLogEntry(log.copy(isSynced = true))
+                }
+            }
+            Log.d("CloudSyncService", "Updated sync status for ${logIds.size} logs")
+        }
+    } catch (e: Exception) {
+        Log.e("CloudSyncService", "Error updating sync status: ${e.message}", e)
     }
 }

@@ -2,17 +2,23 @@ package com.workwatch
 
 import android.app.Application
 import android.util.Log
+import androidx.work.Configuration
 import com.google.firebase.Firebase
 import com.google.firebase.initialize
 import com.workwatch.firebase.CloudSyncWorker
 import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.work.HiltWorkerFactory
+import javax.inject.Inject
 
 @HiltAndroidApp
-class WorkWatchApplication : Application() {
+class WorkWatchApplication : Application(), Configuration.Provider {
 
     companion object {
         private const val TAG = "WorkWatchApp"
     }
+
+    @Inject
+    lateinit var workerFactory: HiltWorkerFactory
 
     override fun onCreate() {
         super.onCreate()
@@ -34,5 +40,11 @@ class WorkWatchApplication : Application() {
         }
 
         Log.d(TAG, "Application initialization complete")
+    }
+
+    override fun getWorkManagerConfiguration(): Configuration {
+        return Configuration.Builder()
+            .setWorkerFactory(workerFactory)
+            .build()
     }
 }
