@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.workwatch.app-mergeDebugResources-39:/values-v16/values-v16.xml",
+            "outputFile": "com.workwatch.app-mergeDebugResources-47:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\islam\\.gradle\\caches\\transforms-4\\14e26dc8b4e1a48fae3dc8bf0fb1e86f\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\islam\\.gradle\\caches\\transforms-4\\d4ef1c459efed44fa633c2f995070b74\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\islam\\.gradle\\caches\\transforms-4\\93f1d60561567c33bfccfeb0247c2faa\\transformed\\core-1.9.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\islam\\.gradle\\caches\\transforms-4\\a4154b250782b2325a241e3ce83d70f3\\transformed\\core-1.9.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

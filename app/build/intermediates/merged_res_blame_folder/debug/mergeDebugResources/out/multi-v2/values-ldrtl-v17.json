@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.workwatch.app-mergeDebugResources-39:/values-ldrtl-v17/values-ldrtl-v17.xml",
+            "outputFile": "com.workwatch.app-mergeDebugResources-47:/values-ldrtl-v17/values-ldrtl-v17.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\islam\\.gradle\\caches\\transforms-4\\e48007bdaf56986c3d6f080fd4fbb661\\transformed\\material-1.10.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
+                    "source": "C:\\Users\\islam\\.gradle\\caches\\transforms-4\\9a2d8d735147686b32fef321bcf3be29\\transformed\\material-1.10.0\\res\\values-ldrtl-v17\\values-ldrtl-v17.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

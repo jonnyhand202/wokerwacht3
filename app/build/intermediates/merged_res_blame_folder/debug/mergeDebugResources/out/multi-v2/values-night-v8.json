@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.workwatch.app-mergeDebugResources-39:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.workwatch.app-mergeDebugResources-47:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\islam\\.gradle\\caches\\transforms-4\\14e26dc8b4e1a48fae3dc8bf0fb1e86f\\transformed\\appcompat-1.6.1\\res\\values-night-v8\\values-night-v8.xml",
+                    "source": "C:\\Users\\islam\\.gradle\\caches\\transforms-4\\d4ef1c459efed44fa633c2f995070b74\\transformed\\appcompat-1.6.1\\res\\values-night-v8\\values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\islam\\.gradle\\caches\\transforms-4\\e48007bdaf56986c3d6f080fd4fbb661\\transformed\\material-1.10.0\\res\\values-night-v8\\values-night-v8.xml",
+                    "source": "C:\\Users\\islam\\.gradle\\caches\\transforms-4\\9a2d8d735147686b32fef321bcf3be29\\transformed\\material-1.10.0\\res\\values-night-v8\\values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

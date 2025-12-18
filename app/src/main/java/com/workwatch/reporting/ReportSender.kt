@@ -65,10 +65,12 @@ class ReportSender(
                     signalStrength = cellTowerInfo.signalStrength,
                     timestamp = cellTowerInfo.timestamp
                 )
+
                 is CellTowerInfo.NoPermission -> {
                     android.util.Log.w("ReportSender", "Cell tower: No permission")
                     null
                 }
+
                 is CellTowerInfo.NotAvailable -> {
                     android.util.Log.w("ReportSender", "Cell tower: ${cellTowerInfo.reason}")
                     null
@@ -101,7 +103,8 @@ class ReportSender(
                 return SaveLogResult.Failure(SaveLogError.ENCRYPTION_FAILED)
             }
 
-            val fullEncryptedData = encryptedResult.initializationVector + encryptedResult.cipherText
+            val fullEncryptedData =
+                encryptedResult.initializationVector + encryptedResult.cipherText
             val newCurrentHash = cryptoUtils.calculateCurrentHash(fullEncryptedData, previousHash)
 
             val newEntry = WorkerLogEntry(
@@ -136,7 +139,10 @@ class ReportSender(
                 "checkOutTime" to logEntry.checkOutTime,
                 "latitude" to logEntry.latitude,
                 "longitude" to logEntry.longitude,
-                "hashChain" to android.util.Base64.encodeToString(logEntry.currentHash, android.util.Base64.NO_WRAP)
+                "hashChain" to android.util.Base64.encodeToString(
+                    logEntry.currentHash,
+                    android.util.Base64.NO_WRAP
+                )
             )
             val reportJson = gson.toJson(reportData)
             android.util.Log.d("ReportSender", "Report sent: $reportJson")
@@ -144,3 +150,4 @@ class ReportSender(
             android.util.Log.e("ReportSender", "Error sending report: ${e.message}")
         }
     }
+}

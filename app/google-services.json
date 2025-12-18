@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "938900343996",
+    "project_id": "wokerwacht",
+    "storage_bucket": "wokerwacht.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:938900343996:android:bd8cc9f711e007fcf014b9",
+        "android_client_info": {
+          "package_name": "com.workwatch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe6gX1mrAPMRPYJWc9mloVzLu5KZtScms"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
