@@ -1,12 +1,8 @@
 R_DEF: Internal format may change without notice
 local
-id checkInOutButton
-id infoText
-id securityInfo
-id statusCard
-id statusText
-id subtitleText
-id titleText
-id viewLogsButton
-layout activity_main
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
 xml file_paths
