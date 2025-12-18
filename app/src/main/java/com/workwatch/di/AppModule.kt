@@ -1,7 +1,6 @@
 package com.workwatch.di
 
 import android.content.Context
-import androidx.work.WorkerFactory
 import com.google.gson.Gson
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -30,7 +29,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import dagger.hilt.work.HiltWorkerFactory
 import javax.inject.Singleton
 
 @Module
@@ -192,8 +190,4 @@ object AppModule {
     fun provideFirestoreService(firestore: FirebaseFirestore): FirestoreServiceImpl =
         FirestoreServiceImpl(firestore)
 
-    @Provides
-    @Singleton
-    fun provideWorkerFactory(hiltWorkerFactory: HiltWorkerFactory): WorkerFactory =
-        hiltWorkerFactory
 }

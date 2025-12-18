@@ -3,6 +3,7 @@ package com.workwatch
 import android.app.Application
 import android.util.Log
 import androidx.work.Configuration
+import androidx.work.WorkManager
 import com.google.firebase.Firebase
 import com.google.firebase.initialize
 import com.workwatch.firebase.CloudSyncWorker
