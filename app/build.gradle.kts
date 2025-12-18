@@ -75,8 +75,8 @@ dependencies {
     // Hilt for Dependency Injection (KSP'ye güncellendi ve düzeltildi)
     implementation("com.google.dagger:hilt-android:2.48")
     ksp("com.google.dagger:hilt-compiler:2.48") // <-- DEĞİŞİKLİK 2
-    implementation("androidx.hilt:hilt-work:1.2.0")
-    ksp("androidx.hilt:hilt-compiler:1.2.0") // <-- DEĞİŞİKLİK 3
+    implementation("androidx.hilt:hilt-work:1.1.0")
+    ksp("androidx.hilt:hilt-compiler:1.1.0") // <-- DEĞİŞİKLİK 3
 
     // OkHttp (Telegram bot)
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
