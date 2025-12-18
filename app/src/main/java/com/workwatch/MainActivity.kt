@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.workwatch.firebase.FirestoreServiceImpl
 import com.workwatch.manager.WorkerCheckManager
 import com.workwatch.reporting.WorkerLeakSender
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var workerCheckManager: WorkerCheckManager
+
+    @Inject
+    lateinit var firestoreService: FirestoreServiceImpl
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
@@ -132,19 +136,11 @@ class MainActivity : AppCompatActivity() {
                     return@launch
                 }
 
-                // Create mock Firestore service (since we don't have Firebase yet)
-                val mockFirestoreService = object : WorkerLeakSender.FirestoreService {
-                    override suspend fun saveLeak(workerId: String, hash: String): Boolean {
-                        // TODO: Implement Firebase
-                        return true
-                    }
-                }
-
-                // Perform check-in/out
+                // Perform check-in/out with real Firestore service
                 val result = workerCheckManager.attemptCheckInOut(
                     context = this@MainActivity,
                     currentLocation = location,
-                    firestoreService = mockFirestoreService
+                    firestoreService = firestoreService
                 )
 
                 // Show result

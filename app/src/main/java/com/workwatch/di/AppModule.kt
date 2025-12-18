@@ -2,7 +2,11 @@ package com.workwatch.di
 
 import android.content.Context
 import com.google.gson.Gson
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.workwatch.data.*
+import com.workwatch.firebase.FirestoreServiceImpl
 import com.workwatch.manager.AdminReportProcessor
 import com.workwatch.manager.WorkerCheckManager
 import com.workwatch.p2p.AdminP2PServer
@@ -165,4 +169,21 @@ object AppModule {
     @Singleton
     fun provideTelegramBotService(): TelegramBotService =
         TelegramBotService()
+
+    // Firebase Services
+
+    @Provides
+    @Singleton
+    fun provideFirestore(): FirebaseFirestore =
+        Firebase.firestore.also { firestore ->
+            // Configure Firestore settings if needed
+            firestore.firestoreSettings = com.google.firebase.firestore.FirebaseFirestoreSettings.Builder()
+                .setNumericalComparisonsEnabled(false)
+                .build()
+        }
+
+    @Provides
+    @Singleton
+    fun provideFirestoreService(firestore: FirebaseFirestore): FirestoreServiceImpl =
+        FirestoreServiceImpl(firestore)
 }
