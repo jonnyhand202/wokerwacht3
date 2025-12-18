@@ -4,11 +4,15 @@ import android.app.Application
 import android.util.Log
 import androidx.work.Configuration
 import androidx.work.WorkManager
+import androidx.work.WorkerFactory
+import androidx.work.WorkerParameters
 import com.google.firebase.Firebase
 import com.google.firebase.initialize
+import com.workwatch.data.AppDatabase
+import com.workwatch.data.WorkerRepository
 import com.workwatch.firebase.CloudSyncWorker
+import com.workwatch.firebase.FirestoreServiceImpl
 import dagger.hilt.android.HiltAndroidApp
-import dagger.hilt.work.HiltWorkerFactory
 import javax.inject.Inject
 
 @HiltAndroidApp
@@ -19,7 +23,25 @@ class WorkWatchApplication : Application(), Configuration.Provider {
     }
 
     @Inject
-    lateinit var workerFactory: HiltWorkerFactory
+    lateinit var workerRepository: WorkerRepository
+
+    @Inject
+    lateinit var firestoreService: FirestoreServiceImpl
+
+    private val customWorkerFactory = object : WorkerFactory() {
+        override fun createWorker(
+            appContext: android.content.Context,
+            workerClassName: String,
+            workerParameters: WorkerParameters
+        ): androidx.work.Worker? {
+            return when (workerClassName) {
+                CloudSyncWorker::class.java.name -> {
+                    CloudSyncWorker(appContext, workerParameters, workerRepository, firestoreService)
+                }
+                else -> null
+            }
+        }
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -45,7 +67,7 @@ class WorkWatchApplication : Application(), Configuration.Provider {
 
     override fun getWorkManagerConfiguration(): Configuration {
         return Configuration.Builder()
-            .setWorkerFactory(workerFactory)
+            .setWorkerFactory(customWorkerFactory)
             .build()
     }
 }
