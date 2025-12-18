@@ -64,9 +64,9 @@ dependencies {
     implementation("org.nanohttpd:nanohttpd:2.3.1")
 
     // Room Database for persistence
-    implementation("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-runtime:2.7.0")
+    implementation("androidx.room:room-ktx:2.7.0")
+    kapt("androidx.room:room-compiler:2.7.0")
 
     // Hilt for Dependency Injection
     implementation("com.google.dagger:hilt-android:2.48")
@@ -89,4 +89,10 @@ dependencies {
 
     // Firebase coroutines extension (already added above but ensuring it's there)
     // implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.1")
+}
+
+// Fix for KAPT annotation processing errors
+kapt {
+    includeCompileClasspath = false
+    useBuildCache = false
 }
