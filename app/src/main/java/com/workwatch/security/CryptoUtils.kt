@@ -27,17 +27,15 @@ class CryptoUtils {
         val iv = cipher.iv
         val cipherText = cipher.doFinal(data)
         return EncryptedData(
-            initializationVector = Base64.getEncoder().encodeToString(iv),
-            cipherText = Base64.getEncoder().encodeToString(cipherText)
+            initializationVector = iv,
+            cipherText = cipherText
         )
     }
 
     fun decryptLogData(encryptedData: EncryptedData, secretKey: SecretKey): ByteArray {
         val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
-        val iv = Base64.getDecoder().decode(encryptedData.initializationVector)
-        val cipherText = Base64.getDecoder().decode(encryptedData.cipherText)
-        cipher.init(Cipher.DECRYPT_MODE, secretKey, IvParameterSpec(iv))
-        return cipher.doFinal(cipherText)
+        cipher.init(Cipher.DECRYPT_MODE, secretKey, IvParameterSpec(encryptedData.initializationVector))
+        return cipher.doFinal(encryptedData.cipherText)
     }
 
     fun generateRandomKey(): SecretKey {
@@ -60,6 +58,24 @@ class CryptoUtils {
 }
 
 data class EncryptedData(
-    val initializationVector: String,
-    val cipherText: String
-)
+    val initializationVector: ByteArray,
+    val cipherText: ByteArray
+) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as EncryptedData
+
+        if (!initializationVector.contentEquals(other.initializationVector)) return false
+        if (!cipherText.contentEquals(other.cipherText)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = initializationVector.contentHashCode()
+        result = 31 * result + cipherText.contentHashCode()
+        return result
+    }
+}
