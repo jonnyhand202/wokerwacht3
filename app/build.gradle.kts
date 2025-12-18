@@ -52,6 +52,9 @@ dependencies {
     // Android WorkManager for background tasks
     implementation("androidx.work:work-runtime-ktx:2.9.0")
 
+    // Google Play Services Location
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+
     // Google Play Integrity API
     implementation("com.google.android.play:integrity:1.3.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.1")

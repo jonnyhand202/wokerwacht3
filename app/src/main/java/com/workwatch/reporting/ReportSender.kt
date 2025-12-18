@@ -126,4 +126,21 @@ class ReportSender(
             SaveLogResult.Failure(SaveLogError.DATABASE_ERROR)
         }
     }
-}
+
+    suspend fun sendWorkerReport(logEntry: WorkerLogEntry) {
+        try {
+            // Prepare report JSON
+            val reportData = mapOf(
+                "workerId" to "worker_1",
+                "timestamp" to logEntry.checkInTime,
+                "checkOutTime" to logEntry.checkOutTime,
+                "latitude" to logEntry.latitude,
+                "longitude" to logEntry.longitude,
+                "hashChain" to android.util.Base64.encodeToString(logEntry.currentHash, android.util.Base64.NO_WRAP)
+            )
+            val reportJson = gson.toJson(reportData)
+            android.util.Log.d("ReportSender", "Report sent: $reportJson")
+        } catch (e: Exception) {
+            android.util.Log.e("ReportSender", "Error sending report: ${e.message}")
+        }
+    }

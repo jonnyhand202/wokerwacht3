@@ -8,6 +8,10 @@ import java.util.Base64
 
 class WorkerLeakSender(private val cryptoUtils: CryptoUtils) {
 
+    interface FirestoreService {
+        suspend fun saveLeak(workerId: String, hash: String): Boolean
+    }
+
     suspend fun sendHashLeak(leak: HashLeak): Boolean {
         return withContext(Dispatchers.IO) {
             try {
